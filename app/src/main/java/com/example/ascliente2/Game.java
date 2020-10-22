@@ -21,7 +21,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
     private Button mySuper;
     private TCPSingleton tcp;
 
-    private float posX = 50;
+    private float posX = 960;
     private float posY = 350;
     private float salto = 0, bajo = 0;
 
