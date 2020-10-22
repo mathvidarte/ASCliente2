@@ -85,7 +85,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
                                     posY += bajo;
 
                                     if(salto == 0){
-                                        tope = false;
+                                        tope =  false;
                                         elJump = false;
                                     }
                                     CoorAnimal jumps = new CoorAnimal(posX, posY, "up");
