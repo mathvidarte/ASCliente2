@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnMessageListener
     public void cuandoLlegueElMensaje(String msg) {
 
         Log.d("<<<<<<<<<",""+msg);
-        if(msg.equals("escoger")){
+        if(msg.contains("escoger")){
             Intent i = new Intent(this, Seleccion.class);
             startActivity(i);
         }
