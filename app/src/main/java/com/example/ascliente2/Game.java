@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.ascliente2.modelo.CoorAnimal;
 import com.google.gson.Gson;
@@ -20,6 +21,8 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
     private Button shot;
     private Button mySuper;
     private TCPSingleton tcp;
+
+    private ImageView soyGallo, soyElefante, soyPig, ventajaElef, ventajaChic, ventajaPig;
 
     private float posX = 960;
     private float posY = 350;
@@ -44,6 +47,12 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         right = findViewById(R.id.right);
         shot = findViewById(R.id.shot);
         mySuper = findViewById(R.id.mySuper);
+        soyGallo = findViewById(R.id.soyGallo);
+        soyElefante = findViewById(R.id.soyElefante);
+        soyPig = findViewById(R.id.soyPig);
+        ventajaElef = findViewById(R.id.ventajaElef);
+        ventajaChic = findViewById(R.id.ventajaPig);
+        ventajaPig = findViewById(R.id.ventajaPig);
 
         tcp = TCPSingleton.getInstance();
         tcp.setObserver(this);
