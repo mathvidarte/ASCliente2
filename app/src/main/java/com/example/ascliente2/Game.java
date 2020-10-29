@@ -202,5 +202,14 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
             Intent i = new Intent(this, fin.class);
             startActivity(i);
         }
+        if(msg.contains("chosenPig")){
+            soyPig.setVisibility(View.VISIBLE);
+        }
+        if(msg.contains("chosenChic")){
+            soyGallo.setVisibility(View.VISIBLE);
+        }
+        if(msg.contains("chosenElef")){
+            soyElefante.setVisibility(View.VISIBLE);
+        }
     }
 }
