@@ -15,25 +15,19 @@ import com.google.gson.Gson;
 
 public class Game extends AppCompatActivity implements View.OnTouchListener, OnMessageListener, View.OnClickListener {
 
-    private Button jump;
-    private Button left;
-    private Button right;
-    private Button shot;
-    private Button mySuper;
+    private Button jump, left, right, shot,mySuper;
     private TCPSingleton tcp;
-
     private ImageView soyGallo, soyElefante, soyPig, ventajaElef, ventajaChic, ventajaPig;
 
-    private float posX = 960;
+    //variables del salto
+    private float posX = 50;
     private float posY = 0;
+    private int niveles = 0;
     private float salto = 0, bajo = 0;
+    private Boolean tope = false, pigsito = false;
 
+    private Boolean elJump = false, elRight = false, elLeft = false, elShot = false;
 
-    private Boolean elJump = false;
-    private Boolean elRight = false;
-    private Boolean elLeft = false;
-
-    private Boolean tope = false;
 
 
 
@@ -41,7 +35,6 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
         jump = findViewById(R.id.jump);
         left = findViewById(R.id.left);
         right = findViewById(R.id.right);
@@ -63,6 +56,8 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         shot.setOnClickListener(this);
         mySuper.setOnClickListener(this);
         jump.setOnClickListener(this);
+
+        Log.d("aparece pawwww",""+pigsito);
 
     }
 
@@ -134,12 +129,19 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
                                 () -> {
                                     while (elLeft==true) {
                                         if (posX >= 0) {
-                                            posX -= 0.1;
+                                            posX -= 3;
 
                                             CoorAnimal jumps = new CoorAnimal(posX, posY, "left");
                                             String jsonL = gsonL.toJson(jumps);
                                             tcp.sendMessage(jsonL);
+
                                         }
+                                        try {
+                                            Thread.sleep(20);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
                                     }
                                 }
                         ).start();
@@ -156,13 +158,19 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
 
                                     while (elRight == true) {
                                         if (posX <= 1030) {
-                                            posX += 0.1;
+                                            posX += 3;
 
                                             CoorAnimal jumps = new CoorAnimal(posX, posY, "right");
                                             String jsonR = gsonR.toJson(jumps);
                                             tcp.sendMessage(jsonR);
                                         }
+                                        try {
+                                            Thread.sleep(20);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
+
                                 }
                         ).start();
                         break;
@@ -194,6 +202,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
 
     @Override
     public void cuandoLlegueElMensaje(String msg) {
+        //Log.d("mensajeeee",""+msg);
         if(msg.contains("end")){
             Intent i = new Intent(this, fin.class);
             startActivity(i);
@@ -207,5 +216,10 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         if(msg.contains("chosenElef")){
             soyElefante.setVisibility(View.VISIBLE);
         }
+        /*if(msg.contains(".")){
+           posY=parseFloat(msg);
+           Log.d("pooooo", ""+posY);
+        }*/
+
     }
 }
