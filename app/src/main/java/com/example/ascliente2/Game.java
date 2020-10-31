@@ -11,16 +11,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.ascliente2.modelo.CoorAnimal;
+import com.example.ascliente2.modelo.Ventajas;
 import com.google.gson.Gson;
 
 public class Game extends AppCompatActivity implements View.OnTouchListener, OnMessageListener, View.OnClickListener {
 
     private Button jump, left, right, shot,mySuper;
     private TCPSingleton tcp;
-    private ImageView soyGallo, soyElefante, soyPig, ventajaElef, ventajaChic, ventajaPig;
+    private ImageView soyGallo, soyElefante, soyPig, elefV, chicV, pigV;
 
     //variables del salto
-    private float posX = 50;
+    private float posX = 960;
     private float posY = 0;
     private int niveles = 0;
     private float salto = 0, bajo = 0;
@@ -43,9 +44,9 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         soyGallo = findViewById(R.id.soyGallo);
         soyElefante = findViewById(R.id.soyElefante);
         soyPig = findViewById(R.id.soyPig);
-        ventajaElef = findViewById(R.id.ventajaElef);
-        ventajaChic = findViewById(R.id.ventajaPig);
-        ventajaPig = findViewById(R.id.ventajaPig);
+        elefV = findViewById(R.id.elefV);
+        chicV = findViewById(R.id.chicV);
+        pigV = findViewById(R.id.pigV);
 
         tcp = TCPSingleton.getInstance();
         tcp.setObserver(this);
@@ -221,5 +222,16 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
            Log.d("pooooo", ""+posY);
         }*/
 
+        if (msg.contains("cerdito")) {
+            pigV.setVisibility(View.VISIBLE);
+        }
+
+        if (msg.contains("pollito")) {
+            chicV.setVisibility(View.VISIBLE);
+        }
+
+        if (msg.contains("elefantito")) {
+            elefV.setVisibility(View.VISIBLE);
+        }
     }
 }
