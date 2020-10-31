@@ -25,7 +25,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
     private ImageView soyGallo, soyElefante, soyPig, ventajaElef, ventajaChic, ventajaPig;
 
     private float posX = 960;
-    private float posY = 350;
+    private float posY = 0;
     private float salto = 0, bajo = 0;
 
 
@@ -79,40 +79,36 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
                             while(elJump == true){
                                 if(salto >= 0 && tope == false){
                                     salto += 0.5;
-                                    posY -= salto;
                                     bajo = 0;
                                     if(salto == 11){
                                         tope = true;
                                     }
-                                    CoorAnimal jumps = new CoorAnimal(posX, posY, "up");
+                                    CoorAnimal jumps = new CoorAnimal(posX, salto, "ap");
                                     String jsonU = gsonU.toJson(jumps);
                                     tcp.sendMessage(jsonU);
                                 }
                                 if(tope == true){
                                     bajo += 0.5;
                                     salto -= 0.5;
-                                    posY += bajo;
 
                                     if(salto == 0){
-                                        tope =  false;
+                                        tope = false;
                                         elJump = false;
                                     }
-                                    CoorAnimal jumps = new CoorAnimal(posX, posY, "up");
+                                    CoorAnimal jumps = new CoorAnimal(posX, bajo, "dawn");
                                     String jsonD = gsonD.toJson(jumps);
                                     tcp.sendMessage(jsonD);
                                 }
-
                                 try {
                                     Thread.sleep(30);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
                             }
-
                         }
                 ).start();
                 break;
+
 
             case R.id.shot:
                 Gson gsonS = new Gson();
