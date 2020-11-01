@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ascliente2.modelo.CoorAnimal;
 import com.google.gson.Gson;
@@ -18,6 +19,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
     private Button jump, left, right, shot,mySuper;
     private TCPSingleton tcp;
     private ImageView soyGallo, soyElefante, soyPig, elefV, chicV, pigV;
+    private TextView elef_v, pig_v, chic_v;
 
     //variables del salto
     private float posX = 960;
@@ -45,6 +47,13 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         elefV = findViewById(R.id.elefV);
         chicV = findViewById(R.id.chicV);
         pigV = findViewById(R.id.pigV);
+        elef_v = findViewById(R.id.elef_v);
+        pig_v = findViewById(R.id.pig_v);
+        chic_v = findViewById(R.id.chic_v);
+
+        pigV.setVisibility(View.INVISIBLE);
+        elefV.setVisibility(View.INVISIBLE);
+        chicV.setVisibility(View.INVISIBLE);
 
         tcp = TCPSingleton.getInstance();
         tcp.setObserver(this);
@@ -215,7 +224,6 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         if(msg.contains("chosenElef")){
             soyElefante.setVisibility(View.VISIBLE);
         }
-
 
     }
 }
