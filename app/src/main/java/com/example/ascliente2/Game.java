@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.ascliente2.modelo.CoorAnimal;
-import com.example.ascliente2.modelo.Ventajas;
 import com.google.gson.Gson;
 
 public class Game extends AppCompatActivity implements View.OnTouchListener, OnMessageListener, View.OnClickListener {
@@ -28,7 +27,6 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
     private Boolean tope = false, pigsito = false;
 
     private Boolean elJump = false, elRight = false, elLeft = false, elShot = false;
-
 
 
 
@@ -58,9 +56,9 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         mySuper.setOnClickListener(this);
         jump.setOnClickListener(this);
 
-        Log.d("aparece pawwww",""+pigsito);
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -203,7 +201,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
 
     @Override
     public void cuandoLlegueElMensaje(String msg) {
-        //Log.d("mensajeeee",""+msg);
+        Log.d("mensajeeee",""+msg);
         if(msg.contains("end")){
             Intent i = new Intent(this, fin.class);
             startActivity(i);
@@ -217,21 +215,7 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         if(msg.contains("chosenElef")){
             soyElefante.setVisibility(View.VISIBLE);
         }
-        /*if(msg.contains(".")){
-           posY=parseFloat(msg);
-           Log.d("pooooo", ""+posY);
-        }*/
 
-        if (msg.contains("cerdito")) {
-            pigV.setVisibility(View.VISIBLE);
-        }
 
-        if (msg.contains("pollito")) {
-            chicV.setVisibility(View.VISIBLE);
-        }
-
-        if (msg.contains("elefantito")) {
-            elefV.setVisibility(View.VISIBLE);
-        }
     }
 }
