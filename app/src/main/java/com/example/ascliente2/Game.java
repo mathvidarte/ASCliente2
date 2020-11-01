@@ -40,7 +40,6 @@ public class Game extends AppCompatActivity implements View.OnTouchListener, OnM
         left = findViewById(R.id.left);
         right = findViewById(R.id.right);
         shot = findViewById(R.id.shot);
-        mySuper = findViewById(R.id.mySuper);
         soyGallo = findViewById(R.id.soyGallo);
         soyElefante = findViewById(R.id.soyElefante);
         soyPig = findViewById(R.id.soyPig);
